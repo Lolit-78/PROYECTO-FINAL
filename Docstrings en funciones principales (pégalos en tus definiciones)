@@ -1,0 +1,96 @@
+def bert_infer(text: str, topk: int = 5):
+    """
+    Inferencia con BERT (clasificación de intenciones).
+    Parámetros:
+        text (str): consulta del usuario.
+        topk (int): número de intenciones con mayor probabilidad a devolver.
+    Retorna:
+        list[tuple[str, float]]: pares (etiqueta_intent, score_probabilidad) ordenados desc.
+    """
+
+def baseline_topk(query: str, k: int = 5):
+    """
+    Inferencia con baseline TF-IDF + LogisticRegression.
+    Parámetros:
+        query (str): consulta del usuario.
+        k (int): top-k clases más probables.
+    Retorna:
+        list[tuple[str, float]]
+    """
+
+def extract_entities(text: str):
+    """
+    Extracción ligera de entidades:
+    - Reglas: IBAN, tarjeta, montos, fechas, emails.
+    - spaCy opcional para entidades generales (PERSON, ORG, DATE, etc.).
+    Parámetros:
+        text (str): texto de entrada.
+    Retorna:
+        list[dict]: {"label": <tipo>, "text": <span>}
+    """
+
+def ocr_image(pil_image):
+    """
+    OCR con Tesseract.
+    Parámetros:
+        pil_image (PIL.Image): imagen RGB.
+    Retorna:
+        str: texto extraído.
+    """
+
+def dialog_reply(user_text: str, max_new_tokens: int = 80) -> str:
+    """
+    Respuesta del gestor de diálogo (DialoGPT) usando memoria de turnos.
+    Parámetros:
+        user_text (str): turno del usuario.
+        max_new_tokens (int): longitud máxima de generación.
+    Retorna:
+        str: respuesta generada por el modelo.
+    """
+
+# --- FastAPI ---
+@app.post("/predict_intent")
+def api_predict_intent(q: Query):
+    """
+    API: Predice intenciones Top-K para un texto.
+    Body:
+        {"text": "...", "topk": 5}
+    Retorna:
+        {"intents":[{"label":str,"score":float}, ...]}
+    """
+
+@app.post("/extract_entities")
+def api_extract_entities(q: Query):
+    """
+    API: Extrae entidades sobre el texto recibido.
+    Retorna:
+        {"entities":[{"label":str,"text":str}, ...]}
+    """
+
+@app.post("/chat")
+def api_chat(q: Query):
+    """
+    API: Gestiona un turno de chat con memoria corta.
+    Retorna:
+        {"reply": str, "memory": str}
+    """
+
+@app.post("/ocr")
+async def api_ocr(file: UploadFile = File(...)):
+    """
+    API: OCR de imagen subida (multipart/form-data).
+    Retorna:
+        {"text": str, "entities": [...]}
+    """
+
+@app.post("/feedback")
+def api_feedback(f: Feedback):
+    """
+    API: Registra feedback de satisfacción (CSAT/NPS/helpful) y lo persiste.
+    """
+
+@app.get("/feedback_stats")
+def api_feedback_stats():
+    """
+    API: Calcula estadísticas agregadas de satisfacción (n, avg_score, helpful_rate, NPS).
+    """
