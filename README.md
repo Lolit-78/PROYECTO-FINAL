@@ -34,6 +34,8 @@ La solución expone una API HTTP (FastAPI) y una UI en Gradio (dos variantes: lo
 
 ## 3. Arquitectura de referencia
 
+<img width="438" height="486" alt="image" src="https://github.com/user-attachments/assets/7a505a76-2575-4d95-8147-c039cc01014f" />
+
 
 ## 4. Componentes técnicos y decisiones
 ### 4.1 NLU (Intents)
