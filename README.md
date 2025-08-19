@@ -1,8 +1,8 @@
 # PROYECTO-FINAL
-Bank Chatbox
 
 # Bank Chatbox
 
+## 1. Resumen
 Se diseñó e implementó un chatbot multimodal orientado a banca digital que atiende consultas 24/7, procesa texto e imágenes (OCR + clasificación de documentos) y soporta transacciones bancarias simuladas (balance y transferencias) con memoria de diálogo, escalamiento inteligente a agentes humanos, métricas de satisfacción y auditoría.
 
 La solución expone una API HTTP (FastAPI) y una UI en Gradio (dos variantes: local por funciones y por HTTP contra la API). El pipeline NLU soporta modelos reales conmutables en caliente (zero-shot multilingüe o Banking77) y fallback robusto por palabras clave/regex.
